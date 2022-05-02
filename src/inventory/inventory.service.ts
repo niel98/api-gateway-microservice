@@ -51,7 +51,6 @@ export class InventoryService {
         } catch (error) {
             Logger.error(error)
             if (error.name === 'TypeError') throw new HttpException('Internal server error', 500);
-            // return new HttpException(error.message, 400)
         }
     }
 }
