@@ -25,12 +25,15 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is the API Gateway for the Food ordering and delivering start up microservice.
 
 ## Installation
 
 ```bash
 $ npm install
 ```
+
+$ Provide the RMQ url in the .env file of the project.
 
 ## Running the app
 
@@ -44,6 +47,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Documentation
+
+The live documented API can be found on https://documenter.getpostman.com/view/12205886/UyrGCumd
 
 ## Test
 
