@@ -13,7 +13,6 @@ export class InventoryService {
     async createInventory(data: createInventoryDto) {
         try {   
             const response = await this.inventoryClient.send({ cmd: 'create-inventory'}, data).toPromise();
-            console.log({ response })
 
             return Promise.resolve({ message: 'Inventory created successfully', status: 201, data: response });
         } catch (error) {
@@ -25,7 +24,6 @@ export class InventoryService {
     async getInventories() {
         try {
             const response = await this.inventoryClient.send({ cmd: 'get-inventories'}, '').toPromise();
-            console.log({ response })
 
             return Promise.resolve({ message: 'Inventories retrieved successfully', status: 200, data: response });
         } catch (error) {
@@ -37,7 +35,6 @@ export class InventoryService {
     async updateInventory(data: UpdateInventoryDto) {
         try {
             const response = await this.inventoryClient.send({ cmd: 'update-inventory'}, data).toPromise();
-            console.log(response)
 
             return Promise.resolve({ message: 'Inventory updated successfully', status: 200, data: response });
         } catch (error) {
@@ -49,12 +46,8 @@ export class InventoryService {
     async deleteInventory(id: string) {
         try {
             const response = await this.inventoryClient.send({ cmd: 'delete-inventory'}, id).toPromise();
-            console.log({ response })
 
-            return Promise.resolve({ 
-                message: response.status == 200 ? 'Inventory deleted successfully' : response.message, 
-                status: response.status == 200 ? 200 : response.status, 
-                data: response.status == 200 ? response : {} });
+            return Promise.resolve({ message: 'Inventory updated successfully', status: 200, data: response });
         } catch (error) {
             Logger.error(error)
             if (error.name === 'TypeError') throw new HttpException('Internal server error', 500);
