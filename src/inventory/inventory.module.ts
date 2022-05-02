@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { InventoryController } from './inventory.controller';
 import { InventoryService } from './inventory.service';
+import * as dotenv from 'dotenv';
+
+dotenv.config()
 
 @Module({
   imports: [ClientsModule.register([
@@ -9,7 +12,7 @@ import { InventoryService } from './inventory.service';
       name: 'INVENTORY_SERVICE',
       transport: Transport.RMQ,
       options: {
-        urls: ['amqps://oucmcbna:4hoAXqBxrU_HFPrldNiOjfQB2Zz8lvQj@rattlesnake.rmq.cloudamqp.com/oucmcbna'],
+        urls: [process.env.RMQ_URI],
         queue: 'main_queue',
         queueOptions: {
           durable: false

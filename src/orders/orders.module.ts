@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
+import * as dotenv from 'dotenv';
+
+dotenv.config()
 
 @Module({
     imports: [ClientsModule.register([
@@ -9,7 +12,7 @@ import { OrdersService } from './orders.service';
           name: 'ORDER_SERVICE',
           transport: Transport.RMQ,
           options: {
-            urls: ['amqps://oucmcbna:4hoAXqBxrU_HFPrldNiOjfQB2Zz8lvQj@rattlesnake.rmq.cloudamqp.com/oucmcbna'],
+            urls: [process.env.RMQ_URI],
             queue: 'main_queue',
             queueOptions: {
               durable: false
