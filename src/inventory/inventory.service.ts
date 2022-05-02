@@ -51,10 +51,14 @@ export class InventoryService {
             const response = await this.inventoryClient.send({ cmd: 'delete-inventory'}, id).toPromise();
             console.log({ response })
 
-            return Promise.resolve({ message: 'Inventory deleted successfully', status: 200, data: response });
+            return Promise.resolve({ 
+                message: response.status == 200 ? 'Inventory deleted successfully' : response.message, 
+                status: response.status == 200 ? 200 : response.status, 
+                data: response.status == 200 ? response : {} });
         } catch (error) {
             Logger.error(error)
             if (error.name === 'TypeError') throw new HttpException('Internal server error', 500);
+            // return new HttpException(error.message, 400)
         }
     }
 }
