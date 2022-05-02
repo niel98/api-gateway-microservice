@@ -47,7 +47,7 @@ export class InventoryService {
         try {
             const response = await this.inventoryClient.send({ cmd: 'delete-inventory'}, id).toPromise();
 
-            return Promise.resolve({ message: 'Inventory updated successfully', status: 200, data: response });
+            return Promise.resolve({ message: 'Inventory deleted successfully', status: 200, data: response });
         } catch (error) {
             Logger.error(error)
             if (error.name === 'TypeError') throw new HttpException('Internal server error', 500);
